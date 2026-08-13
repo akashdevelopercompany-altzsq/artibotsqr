@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  redis:
+    image: redis:7-alpine
+    container_name: qr-redis
+    ports:
+      - '6379:6379'
+    volumes:
+      - redis_data:/data
+    restart: unless-stopped
+
+  # In local dev, we run Next.js and NestJS via 'npm run dev' on the host, 
+  # but here we could define them for a full dockerized setup later.
+  # We are omitting PostgreSQL here because we are using hosted Supabase.
+
+volumes:
+  redis_data:
